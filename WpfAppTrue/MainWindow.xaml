@@ -6,12 +6,12 @@
         xmlns:local="clr-namespace:WpfAppTrue"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
+    <Grid  Background="#60B9CE">
         <StackPanel VerticalAlignment="Center">
-            <TextBox x:Name="loginTb" Width="250"/>
-            <TextBox x:Name="passwordPb" Width="250"/>
-            <Button Width="200" Content="Войти" Click="SignIn"/>
-            <CheckBox IsChecked="True" x:Name="rememberChb" Content="Запомни меня" HorizontalAlignment="Center"/>
+            <TextBox x:Name="loginTb" Width="250" Style="{StaticResource AuthTbx}" Margin="0 10" Height="40"/>
+            <TextBox x:Name="passwordPb" Width="250" Style="{StaticResource AuthTbx}" Margin="0 0 0 10" Height="40"/>
+            <Button Width="50" Content="Войти" Click="SignIn" Style="{StaticResource ActionBtn}" Margin="0 0 0 10" Height="40"/>
+            <CheckBox IsChecked="True" x:Name="rememberChb" Content="Запомни меня" HorizontalAlignment="Center" FontFamily="Cascadia Code SemiBold" Foreground="#206676" FontSize="18"/>
         </StackPanel>
     </Grid>
 </Window>

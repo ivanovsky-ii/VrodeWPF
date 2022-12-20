@@ -23,13 +23,13 @@ namespace WpfAppTrue
     public partial class MainWindow : Window
     {
         public static HttpClient httpClient = new HttpClient();
-        public static  Employee employee;
+        public static Employee employee;
 
         public MainWindow()
         {
             InitializeComponent();
 
-            if (!string.IsNullOrEmpty(Properties.Settings.Default.Login) && !string.IsNullOrEmpty(Properties.Settings.Default.Password))    
+            if (!string.IsNullOrEmpty(Properties.Settings.Default.Login) && !string.IsNullOrEmpty(Properties.Settings.Default.Password))
             {
                 Enter();
             }
@@ -38,6 +38,7 @@ namespace WpfAppTrue
         public void Enter()
         {
             loginTb.Text = Properties.Settings.Default.Login;
+
             passwordPb.Text = Properties.Settings.Default.Password;
         }
 
@@ -69,19 +70,19 @@ namespace WpfAppTrue
                 }
 
                 Main main = new Main();
-                main.Show();    
+                main.Show();
                 Close();
             }
 
             else
             {
-                MessageBox.Show("ЧТО? НЕ ОТКРЫВАЕТСЯ?");
+                MessageBox.Show("ПА БАШКЕ СЕБЕ ПАСТУЧИ");
             }
         }
 
         public class UserData
         {
-            public string username { get; set; } 
+            public string username { get; set; }
             public string password { get; set; }
         }
     }

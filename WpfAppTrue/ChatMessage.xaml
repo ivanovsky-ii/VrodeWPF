@@ -6,13 +6,42 @@
         xmlns:local="clr-namespace:WpfAppTrue"
         mc:Ignorable="d"
         Title="ChatMessage" Height="450" Width="800">
-    <Grid>
-        <ListBox x:Name="messageList">
+    <Grid Background="#60B9CE">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="2*" />
+        </Grid.RowDefinitions>
+        <ListBox x:Name="messageList"
+                 Style="{DynamicResource ModernListBox}"
+                 Margin="10"
+                 HorizontalContentAlignment="Center"
+                 VerticalContentAlignment="Center">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <TextBlock Text="{Binding takeMessage}"/>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="4*" />
+                <RowDefinition Height="1*" />
+            </Grid.RowDefinitions>
+            <TextBox Name="TheMutherFuckerMessageSukaBlyatYaLubluPutinaTbx"
+                     FontSize="32"
+                     Height="45"
+                     Width="200"
+                     FontFamily="Cascadia Code SemiBold"
+                     Style="{StaticResource AuthTbx}"
+                     TextWrapping="Wrap"/>
+            <Button Grid.Row="1"
+                HorizontalAlignment="Center"
+                Width="150"
+                Height="45"
+                Content="Write Message"
+                Name="SendTheMutherFuckerMessageSukaBlyatYaLubluPutina"
+                Click="SendMessage"
+                Style="{StaticResource ActionBtn}"/>
+        </Grid>
     </Grid>
 </Window>

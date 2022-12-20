@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -22,11 +23,17 @@ namespace WpfAppTrue
     /// </summary>
     public partial class ChatMessage : Window
     {
-        List<ChatMessageClass> chatMessages = new List<ChatMessageClass>();   
+        HttpClient httpClient = new HttpClient();
+
+
+        List<ChatMessageClass> chatMessages = new List<ChatMessageClass>();
         public ChatMessage()
         {
             InitializeComponent();
             Title = Main.chatRoom.Topic;
+
+
+
             GetMessage();
         }
 
@@ -39,5 +46,46 @@ namespace WpfAppTrue
 
             messageList.ItemsSource = result.Where(i => i.idChatRoom == Main.chatRoom.id);
         }
+
+        private async void SendMessage(object sender, RoutedEventArgs e)
+        {
+            string TMFmessage = TheMutherFuckerMessageSukaBlyatYaLubluPutinaTbx.Text;
+            SimpleChatMessage chatMessageClass = new SimpleChatMessage(1, MainWindow.employee.id, Main.chatRoom.id, TMFmessage, System.DateTime.Now);
+            httpClient.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+
+            HttpContent httpContent = new StringContent(JsonConvert.SerializeObject(chatMessageClass), Encoding.UTF8, "application/json");
+
+            HttpResponseMessage message = await httpClient.PostAsync("http://localhost:55595/api/WTMFmessage", httpContent);
+
+            MessageBox.Show(message.StatusCode.ToString());
+            if (message.StatusCode == System.Net.HttpStatusCode.OK)
+            {
+                Main m = new Main();
+                m.Show();
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("Абшибка ☻");
+            }
+        }
+    }
+    public class SimpleChatMessage
+    {
+        public SimpleChatMessage(int id, int? idEmplyee, int? idChatRoom, string textMessage, DateTime date)
+        {
+            this.id = id;
+            this.idEmplyee = idEmplyee;
+            this.idChatRoom = idChatRoom;
+            this.textMessage = textMessage;
+            this.dateTime = date;
+        }
+
+        public int id { get; set; }
+        public Nullable<int> idEmplyee { get; set; }
+        public Nullable<int> idChatRoom { get; set; }
+        public string textMessage { get; set; }
+        public Nullable<System.DateTime> dateTime { get; set; }
+
     }
 }

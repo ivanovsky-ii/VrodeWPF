@@ -36,7 +36,7 @@ namespace WpfAppTrue
         {
             MainWindow main = new MainWindow();
             main.Show();
-            Close();
+            this.Close();
         }
 
         public async void GridLooad()
@@ -47,14 +47,16 @@ namespace WpfAppTrue
             HttpResponseMessage chatRooms = await MainWindow.httpClient.GetAsync("http://localhost:55595/api/Chatrooms");
             var roomContent = await chatRooms.Content.ReadAsStringAsync();
             HttpResponseMessage chatEmployee = await MainWindow.httpClient.GetAsync("http://localhost:55595/api/ChatRoomEmploees");
-            var chatEmpContent = await chatEmployee.Content.ReadAsStringAsync();   
+            var chatEmpContent = await chatEmployee.Content.ReadAsStringAsync();
 
 
-            var result = JsonConvert.DeserializeObject<List<ChatRoomEmployee>>(chatEmpContent).Where(i => i.idEmplyee == MainWindow.employee.id).ToList();
+            //.Where(i => i.idEmplyee == MainWindow.employee.id).ToList()
+
+            var result = JsonConvert.DeserializeObject<List<ChatRoomEmployee>>(chatEmpContent);
 
             if (result == null)
             {
-                MessageBox.Show("!У ВАС НЕТ НИОДНОГО ЧАТА!");
+                MessageBox.Show("Чаты не найдены");
             }
             else
             {
@@ -71,6 +73,13 @@ namespace WpfAppTrue
             ChatMessage m = new ChatMessage();
             m.Show();
             Close();
+        }
+
+        private void createChatBtn_Click(object sender, RoutedEventArgs e)
+        {
+            createChatWindow cr = new createChatWindow();
+            cr.ShowDialog();
+            this.Close();
         }
     }
 }

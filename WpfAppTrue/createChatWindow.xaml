@@ -1,0 +1,63 @@
+﻿<Window x:Class="WpfAppTrue.createChatWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfAppTrue"
+        mc:Ignorable="d"
+        Title="createChatWindow" Height="450" Width="800">
+    <Grid Background="#60B9CE">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="6*" />
+            <RowDefinition Height="1*" />
+        </Grid.RowDefinitions>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+            </Grid.RowDefinitions>
+            <TextBlock Text="Создайте свой новый чат"
+                       Grid.ColumnSpan="2"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       Style="{StaticResource ModerTbl}"
+                       FontSize="32"/>
+            <TextBlock Grid.Row="1"
+                       Grid.Column="0"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Center"
+                       Style="{StaticResource ModerTbl}"
+                       Text="Название чата"
+                       FontSize="30"/>
+            <TextBox Grid.Row="1"
+                     Grid.Column="1"
+                     Style="{StaticResource AuthTbx}"
+                     Height="50"
+                     Width="240"
+                     Name="newChatNameTbl"/>
+            
+        </Grid>
+        <Button Grid.Row="1"
+                Style="{StaticResource ActionBtn}"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Center"
+                Width="150"
+                Height="45"
+                Content="Create new chat"
+                Name="createNewChatBtn"
+                Click="createNewChatBtn_Click"/>
+        <Button Grid.Row="1"
+                Style="{StaticResource ActionBtn}"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Center"
+                Width="150"
+                Height="45"
+                Content="Back"
+                Name="backToMainBtn"
+                Click="backToMainBtn_Click"/>
+    </Grid>
+</Window>
